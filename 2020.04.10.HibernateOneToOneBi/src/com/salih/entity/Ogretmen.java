@@ -81,6 +81,20 @@ public class Ogretmen {
 		super();
 	}
 
+	@Override
+	public String toString() {
+		return "Ogretmen [Id=" + Id + ", ogretmenDetay=" + ogretmenDetay.getId() + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", email=" + email + "]";
+	}
+
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
+
 
 
 

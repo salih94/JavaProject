@@ -1,5 +1,6 @@
 package com.salih.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +20,9 @@ public class OgretmenDetay {
 	@SequenceGenerator(name="ogretmen_detay_seq",sequenceName = "seq_ogretmen_detay",allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator="ogretmen_detay_seq")
 	private int Id;
+	
+	@OneToOne(mappedBy="ogretmenDetay")
+	private Ogretmen ogretmen;
 	
 	@Column(name="experties")
 	private String expertise;
@@ -82,6 +86,20 @@ public class OgretmenDetay {
 
 	public OgretmenDetay() {
 		super();
+	}
+
+	public Ogretmen getOgretmen() {
+		return ogretmen;
+	}
+
+	public void setOgretmen(Ogretmen ogretmen) {
+		this.ogretmen = ogretmen;
+	}
+
+	@Override
+	public String toString() {
+		return "OgretmenDetay [Id=" + Id + ", ogretmen=" + ogretmen.getFirstName() + ", expertise=" + expertise + ", hobby=" + hobby
+				+ ", website=" + website + ", fbPage=" + fbPage + "]";
 	}
 	
 	
