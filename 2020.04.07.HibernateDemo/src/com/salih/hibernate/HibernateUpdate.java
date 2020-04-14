@@ -1,5 +1,7 @@
 package com.salih.hibernate;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -7,7 +9,7 @@ import org.hibernate.cfg.Configuration;
 import com.salih.entity.Departments;
 import com.salih.entity.Jobs;
 
-public class HibernateTest {
+public class HibernateUpdate {
 
 	public static void main(String[] args) {
 		
@@ -16,23 +18,27 @@ public class HibernateTest {
 				.addAnnotatedClass(Jobs.class)
 				.addAnnotatedClass(Departments.class)
 				.buildSessionFactory();
-		
+		Session session = sessionFactory.getCurrentSession();
 				//create session
-				Session session = sessionFactory.getCurrentSession();
-				
-				//Jobs jobs = new Jobs("TEST2","TEST MÜHENDÝSÝ",3000,5000);
-				
-				Departments departments = new Departments("Digital Marketing2",100,1800); 
-				
+				/*
 				session.beginTransaction();
 				
-				//session.save(jobs);
+				Departments dept=session.get(Departments.class,40);
+			
+				dept.setDepartmentName("Ýnsan Kaynaklarý");
 				
-				session.save(departments);
+				
 				
 				session.getTransaction().commit();
+				*/
 				
+				session.beginTransaction();
+				session.createQuery("update Departments set DepartmentName='Human Resource' where departmentId=40").executeUpdate();
+				session.getTransaction().commit();
 				session.close();
+				
+				
+				
 				
 				
 	}

@@ -1,5 +1,7 @@
 package com.salih.hibernate;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -7,7 +9,7 @@ import org.hibernate.cfg.Configuration;
 import com.salih.entity.Departments;
 import com.salih.entity.Jobs;
 
-public class HibernateTest {
+public class HibernateQuery {
 
 	public static void main(String[] args) {
 		
@@ -19,20 +21,18 @@ public class HibernateTest {
 		
 				//create session
 				Session session = sessionFactory.getCurrentSession();
-				
-				//Jobs jobs = new Jobs("TEST2","TEST MÜHENDÝSÝ",3000,5000);
-				
-				Departments departments = new Departments("Digital Marketing2",100,1800); 
-				
 				session.beginTransaction();
+				List<Departments> depts=session.createQuery("from Departments where locationId=1700").getResultList(); 
 				
-				//session.save(jobs);
-				
-				session.save(departments);
+				for (Departments depart : depts) {
+					System.out.println(depart.getDepartmentName());
+				}
 				
 				session.getTransaction().commit();
+				sessionFactory.close();
 				
-				session.close();
+				
+				
 				
 				
 	}
